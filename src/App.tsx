@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { HiOutlineBars3BottomLeft, HiMagnifyingGlass, HiShoppingBag } from "react-icons/hi2";
 
 import {ArticleLists} from "./components/ArticleLists";
-import {Slider} from "./shared/Slider";
-import {Row} from "./shared/_common";
+import {Slider} from "./_common/Slider";
+import {Row} from "./_common/_common";
+
+import axios from 'axios';
 
 const Container = styled.div`
   position: relative;
@@ -39,7 +41,6 @@ const RightSide = styled(Row)`
 	}
 `;
 
-
 const Link = styled.a`
 	text-decoration: none;
 	font-weight: 700;
@@ -54,16 +55,27 @@ const Link = styled.a`
 	&:hover {
 		background-color: #00000017;
 		border-radius: 20px;
-	}	
+	}
 `;
 
-
-//TODO: будет приходить изначально все категории...
+// TODO: будет приходить изначально все категории...
 // Если в категории указано show/hide то будет показываться или скрываться
 // Будет передоваться название категории дальше пропсом чтоб данные подтянулись по названию категории или по его id
 
-
 const App = () => {
+
+	const [posts, setPosts] = useState();
+
+	const getListOfDataFromServer = () => {
+		try {
+			const data = axios.get('http://localhost:9000/posts');
+			setPosts(data);
+
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
 	const categories_data = [
 		{
 			id: 1,
@@ -105,6 +117,12 @@ const App = () => {
 			{
 				categories_data.filter((category, index) => category.isShow === true).map((category, ix) => <ArticleLists key={ix} category={category} />)
 			}
+			{
+				posts && posts?.map((post: any, index: any) => {
+					return <h1 key={post.id}>{post.title}</h1>
+				})
+			}
+
 		</Container>
 	)
 }

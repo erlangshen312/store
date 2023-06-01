@@ -8,6 +8,7 @@ const CardContent = styled.div`
 	margin-right: 20px;
 	width: 260px;
 `;
+
 const CardImageContent = styled.div`
 	& > img {
 		border-radius: 20px;
@@ -15,12 +16,15 @@ const CardImageContent = styled.div`
 		height: 260px;
 	}
 `;
+
 const CardBody = styled.div``;
+
 const PriceContent = styled(Row)`
 	& > * {
 		margin-right: 10px;
 	}
 `;
+
 const ActualPrice = styled.p`
 	font-weight: 700;
 	font-size: 16px;
@@ -29,6 +33,7 @@ const ActualPrice = styled.p`
 	align-items: center;
 	color: #000000;
 `;
+
 const SellPrice = styled.p`
 	font-weight: 400;
 	font-size: 12px;
@@ -38,6 +43,7 @@ const SellPrice = styled.p`
 	text-decoration-line: line-through;
 	color: #81818B;
 `;
+
 const Percentage = styled.p`
 	font-weight: 700;
 	font-size: 12px;
@@ -50,6 +56,7 @@ const Percentage = styled.p`
 	border-radius: 60px;
 	padding: 5px 10px;
 `;
+
 const CardTitle = styled.p`
 	font-weight: 400;
 	font-size: 14px;
@@ -73,6 +80,17 @@ const Symbol = styled.span`
 	cursor: '$';
 `;
 
+type Card = {
+	id: string;
+	title: string;
+	description: string;
+	image: string;
+	price: number;
+	sell_price: number;
+	percentage: number;
+	
+}
+
 const Card = ({article}: any) => (
 	<CardContent>
 		<CardImageContent>
@@ -91,4 +109,4 @@ const Card = ({article}: any) => (
 );
 
 
-export {Card}
+export { Card }

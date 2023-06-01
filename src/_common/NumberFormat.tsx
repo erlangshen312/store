@@ -1,4 +1,3 @@
-
 type NumberFormatProps = {
 	price: number ;
 }

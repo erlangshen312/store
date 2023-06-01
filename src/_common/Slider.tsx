@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-
 const Image = styled.div`
 	width: 100%;
 	height: 410px;
